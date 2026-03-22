@@ -15,3 +15,9 @@ declare module "*.module.css" {
   const classes: { readonly [key: string]: string };
   export = classes;
 }
+
+// filepath: types.d.ts
+declare module '*.PNG' {
+  const src: string;
+  export default src;
+}

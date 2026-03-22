@@ -1,11 +1,23 @@
 import { fadeUp, PHONE_CARDS, PHONE_CHIPS, STATS } from "@/utils/constants";
 import { useWaitlistOpen } from "@/zustand";
-import { motion } from "motion/react";
-import { useEffect } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useState } from "react";
 
+import profilePage from "../../public/profile.PNG";
+import convosPage from "../../public/convos.PNG";
+import listingPage from "../../public/listings.PNG";
 export default function Hero() {
   const { setWaitlistOpen, waitlistCount, setWaitlistCount } =
     useWaitlistOpen();
+  const [activeImage, setActiveImage] = useState(0);
+  const images = [listingPage, profilePage, convosPage];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveImage((prev) => (prev + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     fetch("/api/supabase")
@@ -16,7 +28,7 @@ export default function Hero() {
   return (
     <section className="bg-text min-h-screen flex flex-col">
       {/* Nav */}
-     
+
       {/* Hero grid */}
       <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-12 px-8 py-20 items-center max-w-6xl mx-auto w-full">
         {/* Left */}
@@ -99,26 +111,30 @@ export default function Hero() {
           <div className="w-55 bg-[#ecfef8] rounded-4xl border-[6px] border-[#0a3d2c] overflow-hidden flex flex-col">
             {/* Notch */}
             <div className="w-15 h-4.5 bg-[#0a3d2c] rounded-b-xl mx-auto" />
+            <div className="w-52 h-100 ">
 
-            {/* Phone header */}
-            <div className="flex items-center justify-between px-3.5 py-2.5">
-              <span
-                className="text-[13px] font-extrabold text-text"
-                style={{ fontFamily: "Syne, serif" }}
-              >
-                MarketQuad
-              </span>
-              <div className="w-6.5 h-6.5 bg-secondary rounded-full" />
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={activeImage}
+                src={images[activeImage]}
+                alt=""
+                className=" inset-0 w-full h-full object-cover"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              />
+            </AnimatePresence>
             </div>
-
-            {/* Search bar */}
-            <div className="mx-3 mb-2 bg-white border border-[#c8f5e8] rounded-[10px] px-2.5 py-1.5 flex items-center gap-2">
+          </div>
+          {/* Search bar */}
+          {/* <div className="mx-3 mb-2 bg-white border border-[#c8f5e8] rounded-[10px] px-2.5 py-1.5 flex items-center gap-2">
               <div className="flex-1 h-1.5 bg-[#e0faf2] rounded-full" />
               <div className="w-5 h-5 bg-primary rounded-md" />
-            </div>
+            </div> */}
 
-            {/* Chips */}
-            <div className="flex gap-1.5 px-3 pb-2 overflow-hidden">
+          {/* Chips */}
+          {/* <div className="flex gap-1.5 px-3 pb-2 overflow-hidden">
               {PHONE_CHIPS.map((chip, i) => (
                 <span
                   key={chip}
@@ -131,10 +147,10 @@ export default function Hero() {
                   {chip}
                 </span>
               ))}
-            </div>
+            </div> */}
 
-            {/* Cards grid */}
-            <div className="grid grid-cols-2 gap-2 px-3">
+          {/* Cards grid */}
+          {/* <div className="grid grid-cols-2 gap-2 px-3">
               {PHONE_CARDS.map(({ emoji, bg, name, price }) => (
                 <div
                   key={name}
@@ -153,20 +169,9 @@ export default function Hero() {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
 
-            {/* Sell banner */}
-            <div className="mx-3 mt-2.5 mb-3 bg-primary rounded-xl px-3 py-2.5 flex items-center justify-between">
-              <p className="text-[9px] font-extrabold text-text leading-tight">
-                Got stuff
-                <br />
-                to sell?
-              </p>
-              <div className="bg-text text-primary text-[8px] font-bold px-2 py-1 rounded-md">
-                + List it
-              </div>
-            </div>
-          </div>
+          {/* Sell banner */}
         </motion.div>
       </div>
     </section>
