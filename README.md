@@ -1,2 +1,2 @@
-# market_quad_landing_page
+# Market Quad Landing Page Repo
 Market Quad WaitList
