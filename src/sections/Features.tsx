@@ -105,7 +105,7 @@ const FEATURES = [
 const CHAT_MESSAGES = [
   { text: "Hey is this still available?", mine: false },
   { text: "Yeah! Want to meet tomorrow?", mine: true },
-  { text: "Works for me — library entrance?", mine: false },
+  { text: "Works for me, library entrance?", mine: false },
   { text: "Perfect, see you at 2pm!", mine: true },
 ];
 
@@ -126,7 +126,7 @@ export default function FeaturesSection() {
           </h2>
           <p className="text-[15px] text-[#6b9e8a] max-w-115 mx-auto leading-relaxed">
             Everything you need to buy, sell, and connect with students at your
-            university — no strangers, no sketchy meetups.
+            university, no strangers, no sketchy meetups.
           </p>
         </motion.div>
 
@@ -137,11 +137,10 @@ export default function FeaturesSection() {
             <motion.div
               key={feat.title}
               {...fadeUp(0.1 + i * 0.07)}
-              className={`rounded-[20px] border p-6 flex flex-col gap-4 ${
-                feat.dark
-                  ? "bg-text border-[#0a3d2c]"
-                  : "bg-white border-[#e0faf2]"
-              }`}
+              className={`rounded-[20px] border p-6 flex flex-col gap-4 ${feat.dark
+                ? "bg-text border-[#0a3d2c]"
+                : "bg-white border-[#e0faf2]"
+                }`}
             >
               <div
                 className={`w-11 h-11 rounded-xl ${feat.iconBg} flex items-center justify-center`}
@@ -208,11 +207,10 @@ export default function FeaturesSection() {
                   className={`flex ${msg.mine ? "justify-end" : "justify-start"}`}
                 >
                   <span
-                    className={`text-[11px] px-3 py-1.5 rounded-xl max-w-[80%] leading-snug ${
-                      msg.mine
-                        ? "bg-text text-primary rounded-br-sm"
-                        : "bg-white border border-[#e0faf2] text-text rounded-bl-sm"
-                    }`}
+                    className={`text-[11px] px-3 py-1.5 rounded-xl max-w-[80%] leading-snug ${msg.mine
+                      ? "bg-text text-primary rounded-br-sm"
+                      : "bg-white border border-[#e0faf2] text-text rounded-bl-sm"
+                      }`}
                   >
                     {msg.text}
                   </span>

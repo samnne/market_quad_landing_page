@@ -58,9 +58,9 @@ export default function Hero() {
             className="text-[15px] text-[#6b9e8a] leading-relaxed mb-8 max-w-95"
           >
             MarketQuad connects students at your university. Textbooks,
-            electronics, housing — all in one place, trusted by your peers.{" "}
-            <br />
-            Built for Students, by a Student.
+            electronics, housing; all in one place, trusted by your peers.{" "}
+
+            Built for Students, by Students.
           </motion.p>
 
           <motion.div {...fadeUp(0.25)} className="flex items-center gap-4">
@@ -113,18 +113,18 @@ export default function Hero() {
             <div className="w-15 h-4.5 bg-[#0a3d2c] rounded-b-xl mx-auto" />
             <div className="w-52 h-100 ">
 
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={activeImage}
-                src={images[activeImage]}
-                alt=""
-                className=" inset-0 w-full h-full object-cover"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              />
-            </AnimatePresence>
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={activeImage}
+                  src={images[activeImage]}
+                  alt=""
+                  className=" inset-0 w-full h-full object-cover"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                />
+              </AnimatePresence>
             </div>
           </div>
           {/* Search bar */}

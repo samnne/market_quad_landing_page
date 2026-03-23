@@ -38,7 +38,7 @@ const Toast = ({ onDone }: { onDone: () => void }) => {
           You're on the list!
         </p>
         <p className="text-[11px] text-[#6b9e8a]">
-          We'll email you when UVic goes live.
+          We'll email you when MarketQuad goes live.
         </p>
       </div>
       <button
@@ -65,11 +65,12 @@ export default function WaitlistModal({
   open: boolean;
   onClose: () => void;
 }) {
+  const [errorMessage, setErrorMessage] = useState('')
   const [form, setForm] = useState({ name: "", email: "", intent: "" });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [showToast, setShowToast] = useState(false);
-  const {setWaitlistCount, waitlistCount} = useWaitlistOpen()
+  const { setWaitlistCount, waitlistCount } = useWaitlistOpen()
   useEffect(() => {
     fetch("/api/supabase")
       .then((res) => res.json())
@@ -95,6 +96,7 @@ export default function WaitlistModal({
     email: string;
     intent: string;
   }) {
+
     const response = await fetch("/api/formspark", {
       method: "POST",
       headers: {
@@ -105,10 +107,11 @@ export default function WaitlistModal({
     });
 
     const res = await response.json();
-
     if (!res.success) {
+      setErrorMessage("Error to Add to Waitlist")
       return;
     }
+    setErrorMessage('')
     return;
   }
 
@@ -129,6 +132,8 @@ export default function WaitlistModal({
       setShowToast(true);
     } catch (err) {
       console.error("Waitlist error:", err);
+
+      setErrorMessage("Error to Add to Waitlist")
     } finally {
       setLoading(false);
     }
@@ -221,8 +226,10 @@ export default function WaitlistModal({
                     already waiting
                   </p>
                 </div>
-
+                {/* Error */}
+                {errorMessage && <div className="border border-red-500 px-2 py-1 text-red-500 rounded-xl font-bold text-xs my-2 bg-red-200/90 mx-auto w-fit">{errorMessage}</div>}
                 {/* Form */}
+
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                   {/* Name */}
                   <div className="flex flex-col gap-1.5">
@@ -273,11 +280,10 @@ export default function WaitlistModal({
                           key={intent}
                           type="button"
                           onClick={() => setForm((p) => ({ ...p, intent }))}
-                          className={`px-3.5 py-2 rounded-full text-[13px] font-medium border transition-all cursor-pointer ${
-                            form.intent === intent
-                              ? "bg-primary text-text border-primary"
-                              : "bg-[#0a3d2c] text-[#6b9e8a] border-[#17f3b520] hover:border-[#17f3b540]"
-                          }`}
+                          className={`px-3.5 py-2 rounded-full text-[13px] font-medium border transition-all cursor-pointer ${form.intent === intent
+                            ? "bg-primary text-text border-primary"
+                            : "bg-[#0a3d2c] text-[#6b9e8a] border-[#17f3b520] hover:border-[#17f3b540]"
+                            }`}
                         >
                           {intent}
                         </button>
