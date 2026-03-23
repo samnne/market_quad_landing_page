@@ -63,10 +63,10 @@ const server = serve({
         const { data, error } = await supabase
           .from("WaitlistTable")
           .select("*");
-      
+     
         if (error) {
           return Response.json(
-            { message: "Error Fetching Data", success: false },
+            { message: "Error Fetching Data", success: false, error },
             { status: 500 },
           );
         }

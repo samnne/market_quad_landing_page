@@ -28,7 +28,7 @@ const Navbar = () => {
         onClick={()=> setWaitlistOpen(true)}
         className="bg-primary text-text text-[13px] font-bold px-4 py-2 rounded-[10px] cursor-pointer"
       >
-        Join The Waitlist
+      Join The Waitlist
       </button>
     </motion.nav>
   );
