@@ -23,7 +23,7 @@ const FEATURES = [
     ),
     iconBg: "bg-[#d6fdf1]",
     title: "Verified students only",
-    desc: "Sign in with your university email. Every buyer and seller is a real student at your campus.",
+    desc: "Sign in with netlink_id@uvic.ca. Every buyer and seller is a real student at your campus.",
     tag: "Trusted community",
     tagColor: "bg-[#d6fdf1] text-[#0a6644]",
     dark: false,
@@ -125,8 +125,8 @@ export default function FeaturesSection() {
             Built for campus life
           </h2>
           <p className="text-[15px] text-[#6b9e8a] max-w-115 mx-auto leading-relaxed">
-            Everything you need to buy, sell, and connect with students at your
-            university, no strangers, no sketchy meetups.
+            Everything you need to buy, sell, and connect with students at
+            UVic, no strangers, no sketchy meetups.
           </p>
         </motion.div>
 
