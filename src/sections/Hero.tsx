@@ -111,14 +111,14 @@ export default function Hero() {
           <div className="w-55 bg-[#ecfef8] rounded-4xl border-[6px] border-[#0a3d2c] overflow-hidden flex flex-col">
             {/* Notch */}
             <div className="w-15 h-4.5 bg-[#0a3d2c] rounded-b-xl mx-auto" />
-            <div className="w-52 h-100 ">
+            <div className="w-52 h-100  relative">
 
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeImage}
                   src={images[activeImage]}
                   alt=""
-                  className=" inset-0 w-full h-full object-cover"
+                  className="absolute aspect-9/16 mix-blend-multiply inset-0 w-full h-full "
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
