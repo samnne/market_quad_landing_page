@@ -20,24 +20,26 @@ const server = serve({
         const email = body.email as string;
         const name = body.name as string;
         const intent = body.intent as string;
-        const { data, error } = await supabase
-          .from("WaitlistTable")
-          .insert([{
+        const { data, error } = await supabase.from("WaitlistTable").insert([
+          {
             full_name: name,
             uvic_email: email,
-            intent
-          }]);
+            intent,
+          },
+        ]);
 
-        if(error){
-          console.log(error)
-          return Response.json({
-            message: "Supabase Error",
-            success: false,
-          }, {
-            status: 500
-          })
+        if (error) {
+          console.log(error);
+          return Response.json(
+            {
+              message: "Supabase Error",
+              success: false,
+            },
+            {
+              status: 500,
+            },
+          );
         }
-
 
         const response = await fetch(url, {
           method: "POST",
@@ -63,7 +65,7 @@ const server = serve({
         const { data, error } = await supabase
           .from("WaitlistTable")
           .select("*");
-     
+
         if (error) {
           return Response.json(
             { message: "Error Fetching Data", success: false, error },
@@ -79,6 +81,26 @@ const server = serve({
       async POST(req) {
         return Response.json({
           message: "hello post",
+        });
+      },
+    },
+    "/sitemap.xml": {
+      async GET(req) {
+        const file = Bun.file("./public/sitemap.xml");
+        return new Response(file, {
+          headers: {
+            "Content-Type": "application/xml",
+          },
+        });
+      },
+    },
+    "/robots.txt": {
+      async GET(req) {
+        const file = Bun.file("./public/robots.txt");
+        return new Response(file, {
+          headers: {
+            "Content-Type": "text/plain",
+          },
         });
       },
     },
