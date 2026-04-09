@@ -139,7 +139,7 @@ export default function FeaturesSection() {
               {...fadeUp(0.1 + i * 0.07)}
               className={`rounded-[20px] border p-6 flex flex-col gap-4 ${feat.dark
                 ? "bg-text border-[#0a3d2c]"
-                : "bg-white border-[#e0faf2]"
+                : "bg-pill border-[#e0faf2]"
                 }`}
             >
               <div
@@ -171,7 +171,7 @@ export default function FeaturesSection() {
           {/* Row 2: wide card (2 cols) + narrow card (1 col) */}
           <motion.div
             {...fadeUp(0.3)}
-            className="md:col-span-2 bg-white border border-[#e0faf2] rounded-[20px] p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-center"
+            className="md:col-span-2 bg-pill border border-[#e0faf2] rounded-[20px] p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-center"
           >
             <div className="flex flex-col gap-4">
               <div className="w-11 h-11 rounded-xl bg-[#fff0f6] flex items-center justify-center">
@@ -209,7 +209,7 @@ export default function FeaturesSection() {
                   <span
                     className={`text-[11px] px-3 py-1.5 rounded-xl max-w-[80%] leading-snug ${msg.mine
                       ? "bg-text text-primary rounded-br-sm"
-                      : "bg-white border border-[#e0faf2] text-text rounded-bl-sm"
+                      : "bg-pill border border-[#e0faf2] text-text rounded-bl-sm"
                       }`}
                   >
                     {msg.text}
@@ -221,7 +221,7 @@ export default function FeaturesSection() {
 
           <motion.div
             {...fadeUp(0.35)}
-            className="bg-white border border-[#e0faf2] rounded-[20px] p-6 flex flex-col gap-4"
+            className="bg-pill border border-[#e0faf2] rounded-[20px] p-6 flex flex-col gap-4"
           >
             <div className="w-11 h-11 rounded-xl bg-[#d6fdf1] flex items-center justify-center">
               {FEATURES[4]?.icon}

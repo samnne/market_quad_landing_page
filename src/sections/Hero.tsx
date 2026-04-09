@@ -127,51 +127,6 @@ export default function Hero() {
               </AnimatePresence>
             </div>
           </div>
-          {/* Search bar */}
-          {/* <div className="mx-3 mb-2 bg-white border border-[#c8f5e8] rounded-[10px] px-2.5 py-1.5 flex items-center gap-2">
-              <div className="flex-1 h-1.5 bg-[#e0faf2] rounded-full" />
-              <div className="w-5 h-5 bg-primary rounded-md" />
-            </div> */}
-
-          {/* Chips */}
-          {/* <div className="flex gap-1.5 px-3 pb-2 overflow-hidden">
-              {PHONE_CHIPS.map((chip, i) => (
-                <span
-                  key={chip}
-                  className={`shrink-0 px-2 py-0.5 rounded-full text-[9px] font-bold border ${
-                    i === 0
-                      ? "bg-text text-primary border-text"
-                      : "bg-white text-[#6b9e8a] border-[#c8f5e8]"
-                  }`}
-                >
-                  {chip}
-                </span>
-              ))}
-            </div> */}
-
-          {/* Cards grid */}
-          {/* <div className="grid grid-cols-2 gap-2 px-3">
-              {PHONE_CARDS.map(({ emoji, bg, name, price }) => (
-                <div
-                  key={name}
-                  className="bg-white rounded-xl border border-[#e0faf2] overflow-hidden"
-                >
-                  <div
-                    className={`h-14 ${bg} flex items-center justify-center text-[22px]`}
-                  >
-                    {emoji}
-                  </div>
-                  <div className="px-2 py-1.5">
-                    <p className="text-[9px] font-bold text-text">{name}</p>
-                    <p className="text-[9px] font-bold text-primary mt-0.5">
-                      {price}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div> */}
-
-          {/* Sell banner */}
         </motion.div>
       </div>
     </section>

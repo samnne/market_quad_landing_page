@@ -8,8 +8,9 @@ import ReadyToSave from "./sections/ReadyToSave";
 import Works from "./sections/Works";
 import { useWaitlistOpen } from "./zustand";
 
+
 export function App() {
-  const { waitlistOpen,setWaitlistOpen } = useWaitlistOpen();
+  const { waitlistOpen, setWaitlistOpen } = useWaitlistOpen();
   return (
     <main className="overflow-x-hidden">
       <Navbar />

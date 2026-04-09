@@ -7,10 +7,27 @@
 
 import { createRoot } from "react-dom/client";
 import { App } from "./App";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import { PrivacyPolicy } from "./sections/PrivacyPolicy";
+import { TermsOfService } from "./sections/TOS";
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />
+  },
+  {
+    path: '/privacy',
+    element: <PrivacyPolicy />
+  },
+  {
+    path: '/tos',
+    element: <TermsOfService />
+  }
+])
 function start() {
   const root = createRoot(document.getElementById("root")!);
-  root.render(<App />);
+  root.render(<RouterProvider router={router} />);
 }
 
 if (document.readyState === "loading") {
