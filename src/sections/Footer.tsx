@@ -1,29 +1,24 @@
 import { fadeUp } from "@/utils/constants";
 import { motion } from "motion/react";
+import { Link } from "react-router";
 
 
 
 const FOOTER_LINKS = [
-//   {
-//     title: "App",
-//     links: [
-//       "Browse listings",
-//       "Sell an item",
-//       "How it works",
-
-//     ],
-//   },
   {
     title: "MarketQuad",
-    links: ["About", "Blog", "Contact"],
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Blog", href: "/blog" },
+      { label: "Contact", href: "/contact" },
+    ],
   },
   {
     title: "Legal",
     links: [
-      "Privacy policy",
-      "Terms of service",
-      "Cookie policy",
-      "Safety guidelines",
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Service", href: "/tos" },
+      { label: "Safety Guidelines", href: "/safety-guidelines" },
     ],
   },
 ];
@@ -122,14 +117,14 @@ export default function Footer() {
                 {col.title}
               </p>
               <ul className="flex flex-col gap-3">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
+                {col.links.map(({label,href}: {label: string, href: string}) => (
+                  <li key={label}>
+                    <Link
+                      to={href}
                       className="text-[13px] text-[#6b9e8a] hover:text-[#ecfef8] transition-colors"
                     >
-                      {link}
-                    </a>
+                      {label}
+                    </Link>
                   </li>
                 ))}
               </ul>

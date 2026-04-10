@@ -17,8 +17,8 @@ export function App() {
       <Hero />
       <Features />
       {/* <Works />
-      <ReadyToSave />
-      <Footer /> */}
+      <ReadyToSave /> */}
+      <Footer /> 
       <WaitlistModal open={waitlistOpen} onClose={() => setWaitlistOpen(false)} />
     </main>
   );

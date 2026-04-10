@@ -1,18 +1,20 @@
 import { NAV_LINKS } from "@/utils/constants";
 import { useWaitlistOpen } from "@/zustand";
 import { motion } from "motion/react";
+import { Link } from "react-router";
 
 const Navbar = () => {
   const { setWaitlistOpen } = useWaitlistOpen();
 
   return (
     <motion.nav className="flex bg-text items-center justify-between px-8 py-5 border-b border-[#0a3d2c]">
-      <span
+      <Link
+      to={'/'}
         className="font-extrabold text-[20px] text-primary tracking-tight"
         style={{ fontFamily: "Syne, serif" }}
       >
         MarketQuad
-      </span>
+      </Link>
       <div className="hidden md:flex items-center gap-6">
         {NAV_LINKS.map((link) => (
           <a

@@ -10,6 +10,7 @@ import { App } from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { PrivacyPolicy } from "./sections/PrivacyPolicy";
 import { TermsOfService } from "./sections/TOS";
+import SafetyGuidelines from "./sections/SafetyGuidelines";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/tos',
     element: <TermsOfService />
+  },
+  {
+    path: '/safety-guidelines',
+    element: <SafetyGuidelines />
   }
 ])
 function start() {
