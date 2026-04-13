@@ -186,7 +186,7 @@ export default function WaitlistModal({
                       className="text-[26px] font-extrabold text-[#ecfef8] leading-[1.1] tracking-[-0.5px] mb-2"
                       style={{ fontFamily: "Syne, serif" }}
                     >
-                      Join & Win one of three <span className="text-primary">$15 Tim Hortons gift cards!</span>
+                      Join & Win one of three <span className="text-primary">$15 Starbucks gift cards!</span>
                     </h2>
                     <p className="text-[13px] text-[#6b9e8a] leading-relaxed mb-5">
                       The exclusive student marketplace for UVic. Join the waitlist for early access and an entry to win a BiblioCafé gift card.
@@ -288,7 +288,7 @@ export default function WaitlistModal({
                       You're on the list!
                     </h2>
                     <p className="text-[14px] text-[#6b9e8a] mb-6">
-                      You have <span className="text-primary font-bold">1 entry</span> for one of three $15 Tim Hortons gift card.
+                      You have <span className="text-primary font-bold">1 entry</span> for one of three $15 Starbucks gift card.
                     </p>
 
                     <div className="w-full bg-[#0a3d2c] border border-[#17f3b540] rounded-[16px] p-5 mb-6">
