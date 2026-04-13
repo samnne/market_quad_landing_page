@@ -5,12 +5,22 @@ import { useEffect, useState } from "react";
 
 import profilePage from "../../public/profile.PNG";
 import convosPage from "../../public/convos.PNG";
-import listingPage from "../../public/listings.PNG";
+import marketquad from "../../public/marketquad.PNG";
+import home_page from "../../public/home_page.PNG";
+import newPage from "../../public/new.PNG";
+import listingPage from "../../public/market.PNG";
 export default function Hero() {
   const { setWaitlistOpen, waitlistCount, setWaitlistCount } =
     useWaitlistOpen();
   const [activeImage, setActiveImage] = useState(0);
-  const images = [listingPage, profilePage, convosPage];
+  const images = [
+    listingPage,
+    profilePage,
+    convosPage,
+    marketquad,
+    home_page,
+    newPage,
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -58,9 +68,8 @@ export default function Hero() {
             className="text-[15px] text-[#6b9e8a] leading-relaxed mb-8 max-w-95"
           >
             MarketQuad connects students at your university. Textbooks,
-            electronics, housing; all in one place, trusted by your peers.{" "}
-
-            Built for Students, by Students.
+            electronics, housing; all in one place, trusted by your peers. Built
+            for Students, by Students.
           </motion.p>
 
           <motion.div {...fadeUp(0.25)} className="flex items-center gap-4">
@@ -112,7 +121,6 @@ export default function Hero() {
             {/* Notch */}
             <div className="w-15 h-4.5 bg-[#0a3d2c] rounded-b-xl mx-auto" />
             <div className="w-52 h-100  relative">
-
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeImage}
