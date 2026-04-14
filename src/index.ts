@@ -54,7 +54,7 @@ const server = serve({
               { status: 500 },
             );
           }
-          
+
           const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -82,6 +82,55 @@ const server = serve({
             { status: 500 },
           );
         }
+      },
+    },
+    "/api/get_referral_code": {
+      async POST(req) {
+        const body = await req.json();
+        const email = body.email as string;
+        const { data, error } = await supabase
+          .from("WaitlistTable")
+          .select("*")
+          .eq("uvic_email", email);
+      
+        if (error || !data) {
+          return Response.json({
+            message: "Email doesnt exist in our records, sign up first!",
+            code: null,
+            success: false,
+          });
+        }
+
+        if (data && data[0].referral_code) {
+          return Response.json({
+            message: "Email has a referral code already",
+            code: data[0].referral_code,
+            success: true,
+          });
+        }
+        const newReferralCode = Math.random()
+          .toString(36)
+          .substring(2, 8)
+          .toUpperCase();
+
+        const { error: updateError } = await supabase
+          .from("WaitlistTable")
+          .update({
+            referral_code: newReferralCode,
+          })
+          .eq("uvic_email", email);
+        if (updateError){
+          return Response.json({
+            message: "Error Updating",
+            success: false,
+            code: null
+          })
+        }
+        return Response.json({
+          code: newReferralCode,
+          success: true,
+          message: "Successfully got referral code.",
+        });
       },
     },
 

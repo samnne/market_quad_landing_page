@@ -22,7 +22,7 @@ export default function WaitlistModal({
   const [form, setForm] = useState({ name: "", email: "", intent: "" });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  
+
   // NEW: Referral Tracking States
   const [incomingRefCode, setIncomingRefCode] = useState("");
   const [userReferralCode, setUserReferralCode] = useState("");
@@ -36,13 +36,12 @@ export default function WaitlistModal({
     fetch("/api/supabase")
       .then((res) => res.json())
       .then((data) => setWaitlistCount(data.count))
-      .catch(err => console.error("Count fetch error:", err));
+      .catch((err) => console.error("Count fetch error:", err));
 
     // NEW: Check URL for a referral code when modal opens
     const params = new URLSearchParams(window.location.search);
     const ref = params.get("ref");
     if (ref) setIncomingRefCode(ref);
-
   }, []);
   function validate() {
     const errs: Record<string, string> = {};
@@ -65,7 +64,7 @@ export default function WaitlistModal({
     intent: string;
     referredBy: string;
   }) {
-    // Note: Switched from formspark to a custom backend route (e.g., Supabase) 
+    // Note: Switched from formspark to a custom backend route (e.g., Supabase)
     // so you can generate and return a unique referral code.
     const response = await fetch("/api/waitlist", {
       method: "POST",
@@ -80,9 +79,30 @@ export default function WaitlistModal({
     if (!res.success) {
       throw new Error(res.message || "Failed to add to waitlist");
     }
+
+    setUserReferralCode(res.referralCode);
+  }
+  async function checkSignedUp(formData: {
+    email: string;
+    name: string;
+    intent: string;
+  }) {
+    const response = await fetch("/api/get_referral_code", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
     
+    const res = await response.json();
    
-    setUserReferralCode(res.referralCode); 
+    if (!res.success) {
+      return null;
+    } 
+    setUserReferralCode(res.code);
+    return res.code;
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -95,9 +115,13 @@ export default function WaitlistModal({
     setErrors({});
     try {
       setLoading(true);
-      await submitWaitlist({ ...form, referredBy: incomingRefCode });
-      
-      // NEW: Show success screen instead of closing
+      const code = await checkSignedUp({ ...form });
+      if (!code) {
+        await submitWaitlist({ ...form, referredBy: incomingRefCode });
+      }
+  
+
+     
       setIsSuccess(true);
       setErrorMessage("");
     } catch (err) {
@@ -175,9 +199,23 @@ export default function WaitlistModal({
                   >
                     {/* Icon */}
                     <div className="w-13 h-13 bg-[#0a3d2c] rounded-2xl flex items-center justify-center mb-5">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 2l2.5 7H22l-6 4.5 2.5 7L12 17l-7.5 3.5L7 13.5 1 9h7.5L12 2z" fill="#17f3b5" opacity="0.2" />
-                        <path d="M12 2l2.5 7H22l-6 4.5 2.5 7L12 17l-7.5 3.5L7 13.5 1 9h7.5L12 2z" stroke="#17f3b5" strokeWidth="1.4" strokeLinejoin="round" />
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M12 2l2.5 7H22l-6 4.5 2.5 7L12 17l-7.5 3.5L7 13.5 1 9h7.5L12 2z"
+                          fill="#17f3b5"
+                          opacity="0.2"
+                        />
+                        <path
+                          d="M12 2l2.5 7H22l-6 4.5 2.5 7L12 17l-7.5 3.5L7 13.5 1 9h7.5L12 2z"
+                          stroke="#17f3b5"
+                          strokeWidth="1.4"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </div>
 
@@ -186,10 +224,15 @@ export default function WaitlistModal({
                       className="text-[26px] font-extrabold text-[#ecfef8] leading-[1.1] tracking-[-0.5px] mb-2"
                       style={{ fontFamily: "Syne, serif" }}
                     >
-                      Join & Win one of three <span className="text-primary">$15 Starbucks gift cards!</span>
+                      Join & Win one of three{" "}
+                      <span className="text-primary">
+                        $15 Starbucks gift cards!
+                      </span>
                     </h2>
                     <p className="text-[13px] text-[#6b9e8a] leading-relaxed mb-5">
-                      The exclusive student marketplace for UVic. Join the waitlist for early access and an entry to win a BiblioCafé gift card.
+                      The exclusive student marketplace for UVic. Join the
+                      waitlist for early access and an entry to win a BiblioCafé
+                      gift card.
                     </p>
 
                     {/* Social proof */}
@@ -203,43 +246,73 @@ export default function WaitlistModal({
                         ))}
                       </div>
                       <p className="text-xl text-[#6b9e8a]">
-                        <span className="text-primary font-bold">{waitlistCount}</span> students waiting
+                        <span className="text-primary font-bold">
+                          {waitlistCount}
+                        </span>{" "}
+                        students waiting
                       </p>
                     </div>
 
-                    {errorMessage && <div className="border border-red-500 px-2 py-1 text-red-500 rounded-xl font-bold text-xs my-2 bg-red-200/10 mx-auto w-fit">{errorMessage}</div>}
+                    {errorMessage && (
+                      <div className="border border-red-500 px-2 py-1 text-red-500 rounded-xl font-bold text-xs my-2 bg-red-200/10 mx-auto w-fit">
+                        {errorMessage}
+                      </div>
+                    )}
 
                     {/* Form */}
-                    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                    <form
+                      onSubmit={handleSubmit}
+                      className="flex flex-col gap-4"
+                    >
                       {/* Name */}
                       <div className="flex flex-col gap-1.5">
-                        <label className="text-[11px] font-bold text-[#ecfef8] uppercase tracking-widest">Full name</label>
+                        <label className="text-[11px] font-bold text-[#ecfef8] uppercase tracking-widest">
+                          Full name
+                        </label>
                         <input
                           type="text"
                           value={form.name}
-                          onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
+                          onChange={(e) =>
+                            setForm((p) => ({ ...p, name: e.target.value }))
+                          }
                           placeholder="Jordan Lee"
+                          autoComplete="name"
                           className="w-full bg-[#0a3d2c] border border-[#17f3b520] focus:border-primary rounded-xl px-3.5 py-3 text-[14px] text-[#ecfef8] placeholder:text-[#6b9e8a] outline-none transition-colors"
                         />
-                        {errors.name && <p className="text-[11px] text-red-400">{errors.name}</p>}
+                        {errors.name && (
+                          <p className="text-[11px] text-red-400">
+                            {errors.name}
+                          </p>
+                        )}
                       </div>
 
                       {/* Email */}
                       <div className="flex flex-col gap-1.5">
-                        <label className="text-[11px] font-bold text-[#ecfef8] uppercase tracking-widest">UVic email</label>
+                        <label className="text-[11px] font-bold text-[#ecfef8] uppercase tracking-widest">
+                          UVic email
+                        </label>
                         <input
                           type="email"
                           value={form.email}
-                          onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))}
+                          autoComplete="email"
+                          onChange={(e) =>
+                            setForm((p) => ({ ...p, email: e.target.value }))
+                          }
                           placeholder="jordan@uvic.ca"
                           className="w-full bg-[#0a3d2c] border border-[#17f3b520] focus:border-primary rounded-xl px-3.5 py-3 text-[14px] text-[#ecfef8] placeholder:text-[#6b9e8a] outline-none transition-colors"
                         />
-                        {errors.email && <p className="text-[11px] text-red-400">{errors.email}</p>}
+                        {errors.email && (
+                          <p className="text-[11px] text-red-400">
+                            {errors.email}
+                          </p>
+                        )}
                       </div>
 
                       {/* Intent chips */}
                       <div className="flex flex-col gap-2">
-                        <label className="text-[11px] font-bold text-[#ecfef8] uppercase tracking-widest">I want to</label>
+                        <label className="text-[11px] font-bold text-[#ecfef8] uppercase tracking-widest">
+                          I want to
+                        </label>
                         <div className="flex gap-2 flex-wrap">
                           {INTENTS.map((intent) => (
                             <button
@@ -256,7 +329,11 @@ export default function WaitlistModal({
                             </button>
                           ))}
                         </div>
-                        {errors.intent && <p className="text-[11px] text-red-400">{errors.intent}</p>}
+                        {errors.intent && (
+                          <p className="text-[11px] text-red-400">
+                            {errors.intent}
+                          </p>
+                        )}
                       </div>
 
                       {/* Submit */}
@@ -283,28 +360,36 @@ export default function WaitlistModal({
                     <div className="w-16 h-16 bg-[#0a3d2c] rounded-full flex items-center justify-center mb-6">
                       <span className="text-3xl">🎉</span>
                     </div>
-                    
-                    <h2 className="text-[24px] font-extrabold text-[#ecfef8] mb-2" style={{ fontFamily: "Syne, serif" }}>
+
+                    <h2
+                      className="text-[24px] font-extrabold text-[#ecfef8] mb-2"
+                      style={{ fontFamily: "Syne, serif" }}
+                    >
                       You're on the list!
                     </h2>
                     <p className="text-[14px] text-[#6b9e8a] mb-6">
-                      You have <span className="text-primary font-bold">1 entry</span> for one of three $15 Starbucks gift card.
+                      You have{" "}
+                      <span className="text-primary font-bold">1 entry</span>{" "}
+                      for one of three $15 Starbucks gift card.
                     </p>
 
-                    <div className="w-full bg-[#0a3d2c] border border-[#17f3b540] rounded-[16px] p-5 mb-6">
-                      <p className="text-[13px] font-bold text-[#ecfef8] mb-1">Want more entries?</p>
-                      <p className="text-xl text-[#6b9e8a] mb-4">
-                        Get 3 extra entries for every UVic student who joins using your link.
+                    <div className="w-full bg-[#0a3d2c] border border-[#17f3b540] rounded-2xl p-5 mb-6">
+                      <p className="text-[13px] font-bold text-[#ecfef8] mb-1">
+                        Want more entries?
                       </p>
-                      
+                      <p className="text-xl text-[#6b9e8a] mb-4">
+                        Get 3 extra entries for every UVic student who joins
+                        using your link.
+                      </p>
+
                       <div className="flex items-center gap-2 bg-text border border-[#17f3b520] rounded-[10px] p-1.5">
-                        <input 
-                          type="text" 
-                          readOnly 
+                        <input
+                          type="text"
+                          readOnly
                           value={`market-quad.com/?ref=${userReferralCode}`}
                           className="bg-transparent text-xl text-[#ecfef8] px-2 w-full outline-none"
                         />
-                        <button 
+                        <button
                           onClick={handleCopy}
                           className="bg-primary text-text text-xl font-bold px-4 py-2 rounded-[8px] hover:opacity-90 transition-opacity whitespace-nowrap"
                         >
@@ -313,7 +398,7 @@ export default function WaitlistModal({
                       </div>
                     </div>
 
-                    <button 
+                    <button
                       onClick={handleClose}
                       className="text-[13px] font-bold text-[#6b9e8a] hover:text-primary transition-colors"
                     >
