@@ -99,10 +99,10 @@ export default function WaitlistModal({
     const res = await response.json();
    
     if (!res.success) {
-      return null;
+      return res;
     } 
     setUserReferralCode(res?.code);
-    return res?.code;
+    return res;
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -115,8 +115,8 @@ export default function WaitlistModal({
     setErrors({});
     try {
       setLoading(true);
-      const code = await checkSignedUp({ ...form });
-      if (!code) {
+      const res = await checkSignedUp({ ...form });
+      if (res.success) {
         await submitWaitlist({ ...form, referredBy: incomingRefCode });
       }
   
