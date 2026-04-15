@@ -24,18 +24,7 @@ const FOOTER_LINKS = [
 ];
 
 const SOCIAL_LINKS = [
-  {
-    label: "X",
-    href: "#",
-    icon: (
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path
-          d="M1 1l5 5.5L1 13h1.5l4-4.5 3 4.5H13L7.5 6.5 12 1h-1.5L6.5 5 4 1H1z"
-          fill="#6b9e8a"
-        />
-      </svg>
-    ),
-  },
+
   {
     label: "Instagram",
     href: "#",
@@ -55,18 +44,7 @@ const SOCIAL_LINKS = [
       </svg>
     ),
   },
-  {
-    label: "TikTok",
-    href: "#",
-    icon: (
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path
-          d="M9 1c.2 1.5 1 2.5 2.5 2.5v2c-1 0-2-.4-2.5-1v4a3 3 0 11-3-3v2a1 1 0 100 2 1 1 0 001-1V1h2z"
-          fill="#6b9e8a"
-        />
-      </svg>
-    ),
-  },
+
 ];
 
 export default function Footer() {

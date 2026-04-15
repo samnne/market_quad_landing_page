@@ -92,7 +92,7 @@ const server = serve({
           .from("WaitlistTable")
           .select("*")
           .eq("uvic_email", email);
-      
+        console.log(data);
         if (error || !data) {
           return Response.json({
             message: "Email doesnt exist in our records, sign up first!",
@@ -100,32 +100,36 @@ const server = serve({
             success: false,
           });
         }
-
-        if (data && data[0].referral_code) {
+        console.log(data);
+        
+        if (data.length > 0 && data[0]?.referral_code) {
           return Response.json({
             message: "Email has a referral code already",
             code: data[0].referral_code,
             success: true,
           });
         }
+        console.log(data);
         const newReferralCode = Math.random()
-          .toString(36)
-          .substring(2, 8)
-          .toUpperCase();
-
+        .toString(36)
+        .substring(2, 8)
+        .toUpperCase();
+        
+        console.log(data);
         const { error: updateError } = await supabase
-          .from("WaitlistTable")
-          .update({
-            referral_code: newReferralCode,
-          })
-          .eq("uvic_email", email);
-        if (updateError){
+        .from("WaitlistTable")
+        .update({
+          referral_code: newReferralCode,
+        })
+        .eq("uvic_email", email);
+        if (updateError) {
           return Response.json({
             message: "Error Updating",
             success: false,
-            code: null
-          })
+            code: null,
+          });
         }
+        console.log(data);
         return Response.json({
           code: newReferralCode,
           success: true,

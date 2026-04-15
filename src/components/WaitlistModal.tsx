@@ -101,8 +101,8 @@ export default function WaitlistModal({
     if (!res.success) {
       return null;
     } 
-    setUserReferralCode(res.code);
-    return res.code;
+    setUserReferralCode(res?.code);
+    return res?.code;
   }
 
   async function handleSubmit(e: React.FormEvent) {
