@@ -116,7 +116,7 @@ export default function WaitlistModal({
     try {
       setLoading(true);
       const res = await checkSignedUp({ ...form });
-      if (res.success) {
+      if (res.success && !res?.code) {
         await submitWaitlist({ ...form, referredBy: incomingRefCode });
       }
   
