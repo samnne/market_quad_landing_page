@@ -10,9 +10,9 @@ export const PrivacyPolicy = () => {
         <div className="relative max-w-3xl mx-auto rounded-2xl p-6 ">
           <motion.div
             whileTap={{
-              scale: 0.8,
+              scale: 0.95,
             }}
-            className="absolute text-xl font-bold right-0 underline text-secondary cursor-pointer"
+            className=" text-xl font-bold right-0 underline text-secondary cursor-pointer"
           >
             <Link to={"/tos"}>Terms of Service</Link>
           </motion.div>
@@ -97,7 +97,7 @@ export const PrivacyPolicy = () => {
           </Section>
 
           <Section title="11. Contact">
-            <p className="text-accent">contact@market-quad.com</p>
+            <a  href="mailto:contact@market-quad.com" className="text-accent">contact@market-quad.com</a>
           </Section>
         </div>
       </div>

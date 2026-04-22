@@ -11,6 +11,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import { PrivacyPolicy } from "./sections/PrivacyPolicy";
 import { TermsOfService } from "./sections/TOS";
 import SafetyGuidelines from "./sections/SafetyGuidelines";
+import Licenses from "./sections/Licenses";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,11 @@ const router = createBrowserRouter([
   {
     path: '/safety-guidelines',
     element: <SafetyGuidelines />
-  }
+  }, 
+  {path: '/licenses',
+    element: <Licenses />
+  },
+  
 ])
 function start() {
   const root = createRoot(document.getElementById("root")!);

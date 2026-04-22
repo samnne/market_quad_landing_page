@@ -6,6 +6,7 @@ const server = serve({
   routes: {
     // Serve index.html for all unmatched routes.
     "/*": index,
+
     "/api/waitlist": {
       async POST(req) {
         try {
@@ -92,7 +93,7 @@ const server = serve({
           .from("WaitlistTable")
           .select("*")
           .eq("uvic_email", email);
-     
+
         if (error || !data) {
           return Response.json({
             message: "Email doesnt exist in our records, sign up first!",
@@ -100,7 +101,7 @@ const server = serve({
             success: false,
           });
         }
-       
+
         if (data.length > 0 && data[0]?.referral_code) {
           return Response.json({
             message: "Email has a referral code already",
@@ -108,18 +109,18 @@ const server = serve({
             success: true,
           });
         }
-   
+
         const newReferralCode = Math.random()
-        .toString(36)
-        .substring(2, 8)
-        .toUpperCase();
-        
+          .toString(36)
+          .substring(2, 8)
+          .toUpperCase();
+
         const { error: updateError } = await supabase
-        .from("WaitlistTable")
-        .update({
-          referral_code: newReferralCode,
-        })
-        .eq("uvic_email", email);
+          .from("WaitlistTable")
+          .update({
+            referral_code: newReferralCode,
+          })
+          .eq("uvic_email", email);
         if (updateError) {
           return Response.json({
             message: "Error Updating",
@@ -127,7 +128,7 @@ const server = serve({
             code: null,
           });
         }
-        
+
         return Response.json({
           code: newReferralCode,
           success: true,

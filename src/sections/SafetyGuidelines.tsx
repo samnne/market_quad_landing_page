@@ -9,12 +9,7 @@ export default function SafetyGuidelines() {
       <Navbar />
       <div className="min-h-screen bg-background pt-40 py-10 px-4">
         <div className="relative max-w-3xl mx-auto rounded-2xl p-6 ">
-          <motion.div
-            whileTap={{ scale: 0.8 }}
-            className="absolute text-xl font-bold right-0 underline text-secondary cursor-pointer"
-          >
-            <Link to={"/privacy"}>Privacy Policy</Link>
-          </motion.div>
+       
 
           <h1 className="text-3xl font-bold mb-2 text-text">
             Safety Guidelines for{" "}
