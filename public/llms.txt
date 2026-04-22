@@ -1,0 +1,47 @@
+# MarketQuad
+
+MarketQuad is a student-only marketplace built for university communities.
+
+## Overview
+MarketQuad enables verified university students to buy and sell items safely within their campus network. It removes scams, spam, and interactions with non-students by requiring authentication tied to a university.
+
+## Key Features
+- Student-only access (verified accounts)
+- Buy and sell items locally on campus
+- In-app messaging between buyers and sellers
+- Category-based browsing (textbooks, electronics, furniture, etc.)
+- Personalized feed based on user preferences
+- Secure and trusted transactions within a closed community
+
+## Target Users
+- University students
+- Campus communities
+- Buyers and sellers of second-hand goods within universities
+
+## Problem Solved
+Traditional marketplaces (e.g. Facebook Marketplace, Craigslist) expose students to:
+- scams
+- unsafe meetups
+- irrelevant listings
+- non-student users
+
+MarketQuad solves this by creating a closed, trusted student network.
+
+## Platform
+- Mobile app (iOS and Android via React Native / Expo)
+- Backend powered by Supabase and custom APIs
+
+## Use Cases
+- Buying and selling textbooks
+- Selling furniture during move-out periods
+- Finding affordable electronics
+- Campus-specific item exchanges
+
+## Positioning
+MarketQuad is a campus-first marketplace focused on trust, safety, and relevance.
+
+## Website
+https://market-quad.com
+
+## Contact
+contact@market-quad.com

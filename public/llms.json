@@ -1,0 +1,15 @@
+{
+  "name": "MarketQuad",
+  "description": "A student-only marketplace for university communities to buy and sell items safely.",
+  "category": "Marketplace",
+  "audience": ["University students"],
+  "features": [
+    "Student verification",
+    "Local campus buying and selling",
+    "In-app messaging",
+    "Personalized listings"
+  ],
+  "platform": ["iOS", "Android"],
+  "tech": ["React Native", "Expo", "Supabase"],
+  "website": "https://market-quad.com"
+}
