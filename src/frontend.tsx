@@ -12,29 +12,28 @@ import { PrivacyPolicy } from "./sections/PrivacyPolicy";
 import { TermsOfService } from "./sections/TOS";
 import SafetyGuidelines from "./sections/SafetyGuidelines";
 import Licenses from "./sections/Licenses";
+import Contact from "./sections/Contact";
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <App />
+    path: "/",
+    element: <App />,
   },
   {
-    path: '/privacy',
-    element: <PrivacyPolicy />
+    path: "/privacy",
+    element: <PrivacyPolicy />,
   },
   {
-    path: '/tos',
-    element: <TermsOfService />
+    path: "/tos",
+    element: <TermsOfService />,
   },
   {
-    path: '/safety-guidelines',
-    element: <SafetyGuidelines />
-  }, 
-  {path: '/licenses',
-    element: <Licenses />
+    path: "/safety-guidelines",
+    element: <SafetyGuidelines />,
   },
-  
-])
+  { path: "/licenses", element: <Licenses /> },
+  { path: "/contact", element: <Contact /> },
+]);
 function start() {
   const root = createRoot(document.getElementById("root")!);
   root.render(<RouterProvider router={router} />);

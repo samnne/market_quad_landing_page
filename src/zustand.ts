@@ -13,7 +13,13 @@ export const useWaitlistOpen: UseBoundStore<StoreApi<WaitlistState>> = create(
       waitlistOpen: false,
       setWaitlistOpen: (val: boolean) => set({ waitlistOpen: val }),
       waitlistCount: 0,
-      setWaitlistCount: (count: number) => set({ waitlistCount: count }),
+      setWaitlistCount: (count: number) => {
+        const lsCount = localStorage.getItem("COUNT");
+        if (typeof lsCount === "number" && lsCount < count) {
+          localStorage.setItem("COUNT", JSON.stringify(count));
+        }
+        set({ waitlistCount: count });
+      },
     };
   },
 );

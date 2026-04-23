@@ -1,3 +1,4 @@
+import { getClientId } from "@/utils/utils";
 import { useWaitlistOpen } from "@/zustand";
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
@@ -33,9 +34,22 @@ export default function WaitlistModal({
 
   useEffect(() => {
     // Fetch initial count
-    fetch("/api/supabase")
+    const lsCount = localStorage.getItem("COUNT");
+    if (waitlistCount) {
+      return;
+    }
+    fetch("/api/supabase", {
+      headers: {
+        "x-client-id": getClientId(),
+      },
+    })
       .then((res) => res.json())
-      .then((data) => setWaitlistCount(data.count))
+      .then((data) =>
+        setWaitlistCount(
+          data.count ??
+            (typeof lsCount === "number" ? parseInt(lsCount!) : lsCount),
+        ),
+      )
       .catch((err) => console.error("Count fetch error:", err));
 
     // NEW: Check URL for a referral code when modal opens
@@ -71,6 +85,8 @@ export default function WaitlistModal({
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+
+        "x-client-id": getClientId(),
       },
       body: JSON.stringify(formData),
     });
@@ -92,15 +108,17 @@ export default function WaitlistModal({
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+
+        "x-client-id": getClientId(),
       },
       body: JSON.stringify(formData),
     });
-    
+
     const res = await response.json();
-   
+
     if (!res.success) {
       return res;
-    } 
+    }
     setUserReferralCode(res?.code);
     return res;
   }
@@ -119,9 +137,7 @@ export default function WaitlistModal({
       if (res.success && !res?.code) {
         await submitWaitlist({ ...form, referredBy: incomingRefCode });
       }
-  
 
-     
       setIsSuccess(true);
       setErrorMessage("");
     } catch (err) {

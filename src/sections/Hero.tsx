@@ -9,6 +9,7 @@ import marketquad from "../../public/marketquad.PNG";
 import home_page from "../../public/home_page.PNG";
 import newPage from "../../public/new.PNG";
 import listingPage from "../../public/market.PNG";
+import { getClientId } from "@/utils/utils";
 export default function Hero() {
   const { setWaitlistOpen, waitlistCount, setWaitlistCount } =
     useWaitlistOpen();
@@ -30,9 +31,17 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    fetch("/api/supabase")
+    const lsCount = localStorage.getItem("COUNT")
+    if (waitlistCount){
+      return
+    }
+    fetch("/api/supabase", {
+      headers: {
+        "x-client-id": getClientId(),
+      },
+    })
       .then((res) => res.json())
-      .then((data) => setWaitlistCount(data.count));
+      .then((data) => setWaitlistCount(data.count ?? (( typeof lsCount === "number") ? parseInt(lsCount!) : lsCount)));
   }, []);
 
   return (

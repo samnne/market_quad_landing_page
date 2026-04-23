@@ -14,14 +14,30 @@ export const PHONE_CARDS = [
   { emoji: "🎧", bg: "bg-[#fff3f7]", name: "Sony WH", price: "$160" },
   { emoji: "🚲", bg: "bg-[#f0f8ff]", name: "Trek Bike", price: "$220" },
 ];
-
+export const FOOTER_LINKS = [
+  {
+    title: "MarketQuad",
+    links: [
+      // { label: "About", href: "/about" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Service", href: "/tos" },
+      { label: "Safety Guidelines", href: "/safety-guidelines" },
+    ],
+  },
+];
 export const STATS = [
   { num: "12k+", label: "Active students" },
   { num: "$2.1M", label: "Saved by students" },
   { num: "48h", label: "Avg. listing sold" },
 ];
 export const NAV_LINKS = [
-  { text: "Why MarketQuad", link: 'features' },
+  { text: "Why MarketQuad", link: "features" },
   // { text: "How it works", link: 'how-it-works' },
   // { text: "Save Today", link: 'ready-to-save' },
 ];

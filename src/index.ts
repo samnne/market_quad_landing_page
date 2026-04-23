@@ -1,15 +1,74 @@
 import { serve } from "bun";
 import index from "./index.html";
 import { supabase } from "./supabase";
+import { checkLimit } from "./redis-client";
 
 const server = serve({
   routes: {
     // Serve index.html for all unmatched routes.
     "/*": index,
+    "/api/support": {
+      async POST(req) {
+        const limited = await checkLimit(req);
+        if (limited) return limited;
+        const url = process.env.FORMSPARK_CONTACT_URL!;
+        const body = await req.json();
+        if (!body) {
+          return Response.json(
+            {
+              message: "No Data Passed",
+              success: false,
+            },
+            { status: 400 },
+          );
+        }
 
+       
+        const { first, last, reason, description, email } = body;
+        if (!first || !last || !reason || !description || !email) {
+          return Response.json(
+            {
+              message: "Please Provide all required fields.",
+              success: false,
+            },
+            {
+              status: 400,
+            },
+          );
+        }
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify(body),
+          });
+          if (!response.ok) {
+            return Response.json(
+              { message: "Formspark error", success: false },
+              { status: response.status },
+            );
+          }
+          return Response.json({
+            message:
+              "Successfuly Sent Ticket! We will get in touch with you soon!",
+            success: true,
+          });
+        } catch (err) {
+          return Response.json({
+            message: "Something went wrong...",
+            success: false,
+          });
+        }
+      },
+    },
     "/api/waitlist": {
       async POST(req) {
         try {
+          const limited = await checkLimit(req);
+          if (limited) return limited;
           const url = process.env.BUN_PUBLIC_FORMSPARK_ACTION_URL!;
           const body = await req.json();
           const { name, email, intent, referredBy } = body;
@@ -87,6 +146,8 @@ const server = serve({
     },
     "/api/get_referral_code": {
       async POST(req) {
+        const limited = await checkLimit(req);
+        if (limited) return limited;
         const body = await req.json();
         const email = body.email as string;
         const { data, error } = await supabase
@@ -139,6 +200,7 @@ const server = serve({
 
     "/api/supabase": {
       async GET(req) {
+       
         const { data, error } = await supabase
           .from("WaitlistTable")
           .select("*");

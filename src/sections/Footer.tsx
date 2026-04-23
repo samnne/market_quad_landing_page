@@ -1,33 +1,16 @@
-import { fadeUp } from "@/utils/constants";
+import { fadeUp, FOOTER_LINKS } from "@/utils/constants";
 import { motion } from "motion/react";
 import { Link } from "react-router";
 
 
 
-const FOOTER_LINKS = [
-  {
-    title: "MarketQuad",
-    links: [
-      { label: "About", href: "/about" },
-      { label: "Blog", href: "/blog" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Service", href: "/tos" },
-      { label: "Safety Guidelines", href: "/safety-guidelines" },
-    ],
-  },
-];
+
 
 const SOCIAL_LINKS = [
 
   {
     label: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/market_quad/",
     icon: (
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <rect
