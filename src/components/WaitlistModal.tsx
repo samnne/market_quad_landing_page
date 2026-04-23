@@ -407,7 +407,7 @@ export default function WaitlistModal({
                         />
                         <button
                           onClick={handleCopy}
-                          className="bg-primary text-text text-xl font-bold px-4 py-2 rounded-[8px] hover:opacity-90 transition-opacity whitespace-nowrap"
+                          className="bg-primary text-text text-xl font-bold px-4 py-2 rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap"
                         >
                           {copied ? "Copied!" : "Copy"}
                         </button>

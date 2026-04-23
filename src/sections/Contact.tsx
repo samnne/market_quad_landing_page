@@ -93,7 +93,7 @@ const Contact = () => {
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
-      <main className="grid grid-cols-2 max-sm:grid-cols-1 justify-center items-center w-full h-full flex-1 px-5 md:px-25">
+      <main className="grid grid-cols-2 max-sm:grid-cols-1 justify-center items-center w-full h-full flex-1 px-5 py-2 md:px-25">
         <motion.section
           className="flex-1 flex-col gap-2 w-full pt-12.5 md:pt-25 h-full flex items-center "
           initial="hidden"
@@ -117,7 +117,7 @@ const Contact = () => {
             variants={containerVariants}
             animate="visible"
             initial="hidden"
-            className="h-fit w-100 md:w-120 rounded-4xl flex px-6 py-4 flex-col items-center border-primary border"
+            className="h-fit w-full md:w-120 rounded-4xl flex px-6 py-4 flex-col items-center border-primary border"
           >
             <motion.h1
               variants={itemVariants}
@@ -127,7 +127,7 @@ const Contact = () => {
             </motion.h1>
             <motion.p
               variants={itemVariants}
-              className="text-mint/75 text-center w-100"
+              className="text-mint/75 text-center "
             >
               You can reach us at anytime!
             </motion.p>
@@ -270,7 +270,7 @@ const Contact = () => {
               variants={itemVariants}
               className="flex w-full justify-center gap-4 mt-6"
             >
-              <p className="font-bold text-center px-12 text-mint">
+              <p className="font-bold text-sm text-center sm:px-12 text-mint">
                 by contacting us you agree to our <br />
                 <Link to="/tos" className="text-primary">
                   Terms of Service
