@@ -1,4 +1,3 @@
-// src/lib/rateLimit.ts
 
 const MAX_LIMIT = 5;
 const WINDOW_MS = 60 * 60 * 1000; // 1 hour

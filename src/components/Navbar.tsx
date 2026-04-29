@@ -9,6 +9,7 @@ const Navbar = () => {
   return (
     <motion.nav className="flex bg-text items-center justify-between px-8 py-5 border-b border-[#0a3d2c]">
       <Link
+      
       to={'/'}
         className="font-extrabold text-[20px] text-primary tracking-tight"
         style={{ fontFamily: "Syne, serif" }}
