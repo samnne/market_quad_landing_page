@@ -13,6 +13,7 @@ import { TermsOfService } from "./sections/TOS";
 import SafetyGuidelines from "./sections/SafetyGuidelines";
 import Licenses from "./sections/Licenses";
 import Contact from "./sections/Contact";
+import EULA from "./sections/EULA";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
   },
   { path: "/licenses", element: <Licenses /> },
   { path: "/contact", element: <Contact /> },
+  { path: "/eula", element: <EULA /> },
 ]);
 function start() {
   const root = createRoot(document.getElementById("root")!);

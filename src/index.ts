@@ -23,7 +23,6 @@ const server = serve({
           );
         }
 
-       
         const { first, last, reason, description, email } = body;
         if (!first || !last || !reason || !description || !email) {
           return Response.json(
@@ -200,7 +199,6 @@ const server = serve({
 
     "/api/supabase": {
       async GET(req) {
-       
         const { data, error } = await supabase
           .from("WaitlistTable")
           .select("*");
@@ -244,7 +242,7 @@ const server = serve({
       },
     },
   },
-
+  port: 8000,
   development: process.env.NODE_ENV !== "production" && {
     // Enable browser hot reloading in development
     hmr: true,

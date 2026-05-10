@@ -28,6 +28,7 @@ export const FOOTER_LINKS = [
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Service", href: "/tos" },
       { label: "Safety Guidelines", href: "/safety-guidelines" },
+      { label: "EULA", href: "/eula" },
     ],
   },
 ];
