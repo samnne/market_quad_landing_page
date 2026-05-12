@@ -242,7 +242,7 @@ const server = serve({
       },
     },
   },
-  port: 8000,
+
   development: process.env.NODE_ENV !== "production" && {
     // Enable browser hot reloading in development
     hmr: true,
