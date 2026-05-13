@@ -43,7 +43,7 @@ export default function Footer() {
           <div className="md:col-span-1 flex flex-col gap-4">
             <span
               className="text-[20px] font-extrabold text-primary tracking-tight"
-              style={{ fontFamily: "Syne, serif" }}
+               
             >
               MarketQuad
             </span>

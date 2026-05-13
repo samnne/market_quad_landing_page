@@ -2,26 +2,26 @@ import { NAV_LINKS } from "@/utils/constants";
 import { useWaitlistOpen } from "@/zustand";
 import { motion } from "motion/react";
 import { Link } from "react-router";
-
+import logoPNG from "@/LOGO.PNG"
 const Navbar = () => {
   const { setWaitlistOpen } = useWaitlistOpen();
 
   return (
-    <motion.nav className="flex bg-text items-center justify-between px-8 py-5 border-b border-[#0a3d2c]">
+    <motion.nav className="flex bg-background items-center justify-between px-8 py-5 ">
       <Link
       
       to={'/'}
         className="font-extrabold text-[20px] text-primary tracking-tight"
-        style={{ fontFamily: "Syne, serif" }}
+       
       >
-        MarketQuad
+        <img src={logoPNG} className="w-12" alt="mq-logo"/>
       </Link>
       <div className="hidden md:flex items-center gap-6">
         {NAV_LINKS.map((link) => (
           <a
             key={link.link}
             href={`#${link.link}`}
-            className="text-[13px] text-[#6b9e8a] hover:text-[#ecfef8] transition-colors"
+            className="text-xl  text-text  hover:text-primary font-bold transition-colors"
           >
             {link.text}
           </a>
@@ -29,7 +29,7 @@ const Navbar = () => {
       </div>
       <button
         onClick={()=> setWaitlistOpen(true)}
-        className="bg-primary text-text text-[13px] font-bold px-4 py-2 rounded-[10px] cursor-pointer"
+        className="bg-primary text-text text-base font-bold px-6 py-3 rounded-full cursor-pointer"
       >
       Join The Waitlist
       </button>

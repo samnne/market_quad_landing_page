@@ -70,7 +70,8 @@ const STEPS = [
 ];
 
 export default function Works() {
- 
+  const { setWaitlistOpen, waitlistCount, setWaitlistCount } =
+    useWaitlistOpen();
   return (
     <section id="how-it-works" className="bg-text py-24 px-6 md:px-8">
       <div className="max-w-5xl mx-auto">
@@ -79,10 +80,7 @@ export default function Works() {
           <p className="text-[11px] font-bold text-primary uppercase tracking-widest mb-3">
             How it works
           </p>
-          <h2
-            className="text-[38px] font-extrabold text-[#ecfef8] leading-[1.1] tracking-[-1px]"
-            style={{ fontFamily: "Syne, serif" }}
-          >
+          <h2 className="text-[38px] font-extrabold text-[#ecfef8] leading-[1.1] tracking-[-1px]">
             Four steps to your next deal
           </h2>
         </motion.div>
@@ -106,20 +104,16 @@ export default function Works() {
                       ? "bg-primary border-primary text-text"
                       : "bg-text border-[#0a3d2c] text-primary"
                   }`}
-                  style={{ fontFamily: "Syne, serif" }}
                 >
                   {step.num}
                 </div>
 
                 {/* Icon box */}
-                <div className="w-12 h-12 rounded-[14px] bg-[#0a3d2c] flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-full bg-[#0a3d2c] flex items-center justify-center mb-4">
                   {step.icon}
                 </div>
 
-                <p
-                  className="text-[15px] font-bold text-[#ecfef8] mb-2"
-                  style={{ fontFamily: "Syne, serif" }}
-                >
+                <p className="text-[15px] font-bold text-[#ecfef8] mb-2">
                   {step.title}
                 </p>
                 <p className="text-[12px] text-[#6b9e8a] leading-relaxed max-w-45">
@@ -138,13 +132,7 @@ export default function Works() {
           {...fadeUp(0.5)}
           className="flex flex-col items-center gap-5"
         >
-          <motion.button
-            whileTap={{ scale: 0.97 }}
-           
-            className="bg-primary text-text font-bold text-[15px] px-8 py-4 rounded-[14px] cursor-pointer"
-          >
-            Start buying & selling →
-          </motion.button>
+       
 
           {/* Social proof */}
 

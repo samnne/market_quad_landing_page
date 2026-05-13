@@ -120,7 +120,7 @@ export default function FeaturesSection() {
           </p>
           <h2
             className="text-[38px] font-extrabold text-text leading-[1.1] tracking-[-1px] mb-4"
-            style={{ fontFamily: "Syne, serif" }}
+             
           >
             Built for campus life
           </h2>
@@ -150,7 +150,7 @@ export default function FeaturesSection() {
               <div>
                 <p
                   className={`text-2xl font-bold mb-1.5 ${feat.dark ? "text-[#ecfef8]" : "text-text"}`}
-                  style={{ fontFamily: "Syne, serif" }}
+                   
                 >
                   {feat.title}
                 </p>
@@ -180,7 +180,7 @@ export default function FeaturesSection() {
               <div>
                 <p
                   className="text-2xl font-bold text-text mb-1.5"
-                  style={{ fontFamily: "Syne, serif" }}
+                   
                 >
                   {FEATURES[3]?.title}
                 </p>
@@ -229,7 +229,7 @@ export default function FeaturesSection() {
             <div>
               <p
                 className="text-2xl font-bold text-text mb-1.5"
-                style={{ fontFamily: "Syne, serif" }}
+                 
               >
                 {FEATURES[4]?.title}
               </p>

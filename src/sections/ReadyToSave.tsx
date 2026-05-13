@@ -17,9 +17,13 @@ const TRUST_ITEMS = [
 ];
 
 export default function ReadyToSave() {
- 
+  const { setWaitlistOpen, waitlistCount, setWaitlistCount } =
+    useWaitlistOpen();
   return (
-    <section id="ready-to-save" className="bg-text py-24 px-6 md:px-8 relative overflow-hidden">
+    <section
+      id="ready-to-save"
+      className="bg-text py-24 px-6 md:px-8 relative overflow-hidden"
+    >
       {/* Decorative rings */}
       <div className="absolute w-100 h-100 rounded-full border border-[#17f3b515] -top-50 left-1/2 -translate-x-1/2 pointer-events-none" />
       <div className="absolute w-60 h-60 rounded-full border border-[#17f3b510] -bottom-30 right-15 pointer-events-none" />
@@ -38,7 +42,6 @@ export default function ReadyToSave() {
         <motion.h2
           {...fadeUp(0.08)}
           className="text-[44px] font-extrabold text-[#ecfef8] leading-[1.05] tracking-[-1.5px] mb-4"
-          style={{ fontFamily: "Syne, serif" }}
         >
           Your campus market
           <br />
@@ -50,28 +53,24 @@ export default function ReadyToSave() {
           {...fadeUp(0.14)}
           className="text-[15px] text-[#6b9e8a] leading-relaxed max-w-105 mb-10"
         >
-          Join thousands of students buying and selling smarter. Sign up free —
+          Join thousands of students buying and selling smarter. Sign up free, 
           no credit card, no catch.
         </motion.p>
 
         {/* Buttons */}
         <motion.div
           {...fadeUp(0.2)}
+          
           className="flex flex-col sm:flex-row gap-3 mb-10"
         >
           <motion.button
             whileTap={{ scale: 0.97 }}
-            
-            className="bg-primary text-text font-bold text-[15px] px-8 py-4 rounded-[14px] cursor-pointer"
+            onClick={() => setWaitlistOpen(true)}
+            className="bg-primary text-text font-bold text-[15px] px-8 py-4 rounded-full cursor-pointer"
           >
-            Get started free →
+            Get started free
           </motion.button>
-          <motion.button
-            whileTap={{ scale: 0.97 }}
-            className="bg-transparent text-[#ecfef8] font-medium text-[15px] px-8 py-4 rounded-[14px] border border-[#0a3d2c] cursor-pointer hover:border-[#17f3b530] transition-colors"
-          >
-            Browse listings
-          </motion.button>
+         
         </motion.div>
 
         {/* Social proof */}

@@ -238,7 +238,7 @@ export default function WaitlistModal({
                     {/* NEW: Updated Headline for Giveaway */}
                     <h2
                       className="text-[26px] font-extrabold text-[#ecfef8] leading-[1.1] tracking-[-0.5px] mb-2"
-                      style={{ fontFamily: "Syne, serif" }}
+                       
                     >
                       Join & Win one of three{" "}
                       <span className="text-primary">
@@ -357,8 +357,8 @@ export default function WaitlistModal({
                         whileTap={{ scale: 0.97 }}
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-primary text-text font-bold text-[15px] py-3.5 rounded-[14px] mt-1 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity cursor-pointer"
-                        style={{ fontFamily: "Syne, serif" }}
+                        className="w-full bg-primary text-text font-bold text-[15px] py-3.5 rounded-full mt-1 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity cursor-pointer"
+                         
                       >
                         {loading ? "Joining..." : "Join & Enter Draw →"}
                       </motion.button>
@@ -379,7 +379,7 @@ export default function WaitlistModal({
 
                     <h2
                       className="text-[24px] font-extrabold text-[#ecfef8] mb-2"
-                      style={{ fontFamily: "Syne, serif" }}
+                       
                     >
                       You're on the list!
                     </h2>
