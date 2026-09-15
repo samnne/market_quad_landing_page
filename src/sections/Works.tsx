@@ -1,5 +1,5 @@
 import { fadeUp } from "@/utils/constants";
-import { useWaitlistOpen } from "@/zustand";
+import { useDashboard, useWaitlistOpen } from "@/zustand";
 import { motion } from "motion/react";
 
 const STEPS = [
@@ -70,8 +70,8 @@ const STEPS = [
 ];
 
 export default function Works() {
-  const { setWaitlistOpen, waitlistCount, setWaitlistCount } =
-    useWaitlistOpen();
+  const { setDownloadModal, userCount,setUserCount } =
+    useDashboard();
   return (
     <section id="how-it-works" className="bg-text py-24 px-6 md:px-8">
       <div className="max-w-5xl mx-auto">

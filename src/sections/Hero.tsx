@@ -1,5 +1,5 @@
-import { fadeUp, PHONE_CARDS, PHONE_CHIPS, STATS } from "@/utils/constants";
-import { useWaitlistOpen } from "@/zustand";
+import { appLink, fadeUp, PHONE_CARDS, PHONE_CHIPS, STATS } from "@/utils/constants";
+import { useDashboard, useWaitlistOpen } from "@/zustand";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
@@ -12,8 +12,8 @@ import listingPage from "../../public/market.PNG";
 import appScreenshot from "../../public/app.PNG";
 import { getClientId } from "@/utils/utils";
 export default function Hero() {
-  const { setWaitlistOpen, waitlistCount, setWaitlistCount } =
-    useWaitlistOpen();
+  const { setDownloadModal, userCount, setUserCount } =
+    useDashboard();
   const [activeImage, setActiveImage] = useState(0);
   const images = [
     listingPage,
@@ -33,7 +33,7 @@ export default function Hero() {
 
   useEffect(() => {
     const lsCount = localStorage.getItem("COUNT");
-    if (waitlistCount) {
+    if (userCount) {
       return;
     }
     fetch("/api/supabase", {
@@ -43,7 +43,7 @@ export default function Hero() {
     })
       .then((res) => res.json())
       .then((data) =>
-        setWaitlistCount(
+        setUserCount(
           data.count ??
             (typeof lsCount === "number" ? parseInt(lsCount!) : lsCount),
         ),
@@ -81,8 +81,9 @@ export default function Hero() {
 
           <motion.div {...fadeUp(0.25)} className="flex items-center gap-4">
             <button
-              onClick={() => setWaitlistOpen(true)}
+             
               className="bg-primary text-text font-bold flex justify-center items-center text-xl px-6 py-4 rounded-full cursor-pointer"
+              onClick={()=>setDownloadModal(true)}
             >
               Get started free
             </button>
@@ -91,8 +92,8 @@ export default function Hero() {
 
           {/* Stats */}
           <p className="text-xl pt-1  text-text/70">
-            <span className="text-primary font-black">{waitlistCount}</span>{" "}
-            students already waiting
+            <span className="text-primary font-black">{userCount}</span>{" "}
+            students already using MarketQuad.
           </p>
         </div>
 

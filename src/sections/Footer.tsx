@@ -112,7 +112,7 @@ export default function Footer() {
                 <path d="M9 6.5L4 10V3l5 3.5z" fill="#17f3b5" />
               </svg>
               <span className="text-[11px] font-bold text-primary">
-                Join the Waitlist
+                Download on IOS today!
               </span>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { fadeUp } from "@/utils/constants";
-import { useWaitlistOpen } from "@/zustand";
+import { useDashboard, useWaitlistOpen } from "@/zustand";
 import { motion } from "motion/react";
 
 const AVATAR_COLORS = [
@@ -17,8 +17,8 @@ const TRUST_ITEMS = [
 ];
 
 export default function ReadyToSave() {
-  const { setWaitlistOpen, waitlistCount, setWaitlistCount } =
-    useWaitlistOpen();
+  const { setDownloadModal,userCount,setUserCount } =
+    useDashboard();
   return (
     <section
       id="ready-to-save"
@@ -65,7 +65,7 @@ export default function ReadyToSave() {
         >
           <motion.button
             whileTap={{ scale: 0.97 }}
-            onClick={() => setWaitlistOpen(true)}
+            onClick={() => setDownloadModal(true)}
             className="bg-primary text-text font-bold text-[15px] px-8 py-4 rounded-full cursor-pointer"
           >
             Get started free

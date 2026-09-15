@@ -1,10 +1,10 @@
 import { NAV_LINKS } from "@/utils/constants";
-import { useWaitlistOpen } from "@/zustand";
+import { useDashboard, useWaitlistOpen } from "@/zustand";
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import logoPNG from "@/LOGO.PNG"
 const Navbar = () => {
-  const { setWaitlistOpen } = useWaitlistOpen();
+  const { setDownloadModal } = useDashboard();
 
   return (
     <motion.nav className="flex bg-background items-center justify-between px-8 py-5 ">
@@ -28,10 +28,10 @@ const Navbar = () => {
         ))}
       </div>
       <button
-        onClick={()=> setWaitlistOpen(true)}
+        onClick={()=> setDownloadModal(true)}
         className="bg-primary text-text text-base font-bold px-6 py-3 rounded-full cursor-pointer"
       >
-      Join The Waitlist
+      Download for Free today!
       </button>
     </motion.nav>
   );

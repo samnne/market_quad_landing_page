@@ -1,3 +1,4 @@
+import DownloadToday from "./components/DownloadToday";
 import Navbar from "./components/Navbar";
 import WaitlistModal from "./components/WaitlistModal";
 import "./index.css";
@@ -6,11 +7,11 @@ import Footer from "./sections/Footer";
 import Hero from "./sections/Hero";
 import ReadyToSave from "./sections/ReadyToSave";
 import Works from "./sections/Works";
-import { useWaitlistOpen } from "./zustand";
+import { useDashboard, useWaitlistOpen } from "./zustand";
 
 
 export function App() {
-  const { waitlistOpen, setWaitlistOpen } = useWaitlistOpen();
+  const { downloadModal, setDownloadModal } = useDashboard();
   return (
     <main className="overflow-x-hidden">
       <Navbar />
@@ -19,7 +20,7 @@ export function App() {
       <Works />
       <ReadyToSave />
       <Footer /> 
-      <WaitlistModal open={waitlistOpen} onClose={() => setWaitlistOpen(false)} />
+      <DownloadToday open={downloadModal} onClose={() => setDownloadModal(false)} />
     </main>
   );
 }

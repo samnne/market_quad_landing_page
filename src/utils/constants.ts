@@ -49,3 +49,4 @@ export const CHAT_MESSAGES = [
   { text: "Works for me — library entrance?", mine: false },
   { text: "Perfect, see you at 2pm!", mine: true },
 ];
+  export const appLink = "https://apps.apple.com/ca/app/marketquad-uvic-marketplace/id6761750891 ";

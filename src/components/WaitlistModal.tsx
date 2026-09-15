@@ -33,7 +33,7 @@ export default function WaitlistModal({
   const { setWaitlistCount, waitlistCount } = useWaitlistOpen();
 
   useEffect(() => {
-    // Fetch initial count
+    
     const lsCount = localStorage.getItem("COUNT");
     if (waitlistCount) {
       return;
