@@ -14,6 +14,7 @@ import SafetyGuidelines from "./sections/SafetyGuidelines";
 import Licenses from "./sections/Licenses";
 import Contact from "./sections/Contact";
 import EULA from "./sections/EULA";
+import GiveawayRules from "./sections/GiveawayRules";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/privacy",
     element: <PrivacyPolicy />,
+  },
+  {
+    path: "/giveaway",
+    element: <GiveawayRules />,
   },
   {
     path: "/tos",

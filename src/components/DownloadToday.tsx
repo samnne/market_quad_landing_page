@@ -231,7 +231,7 @@ export default function DownloadToday({
 
                   {/* NEW: Updated Headline for Giveaway */}
                   <h2 className="text-[26px] font-extrabold text-[#ecfef8] leading-[1.1] tracking-[-0.5px] mb-2">
-                    Download the App {" "}
+                    Download the App{" "}
                     <span className="text-primary">on IOS today!</span>
                   </h2>
                   <p className="text-[13px] text-[#6b9e8a] leading-relaxed mb-5">
@@ -264,21 +264,44 @@ export default function DownloadToday({
                   )}
                 </motion.div>
                 <div className="flex gap-4">
-                  <motion.a whileTap={{
-                    scale: 0.9
-                  }}  whileHover={{
-                    scale: 1.1
-                  }} href={appLink} target="_blank" className="font-bold cursor-pointer text-center text-text text-base rounded-2xl bg-primary px-4 py-2">
+                  <motion.a
+                    whileTap={{
+                      scale: 0.9,
+                    }}
+                    whileHover={{
+                      scale: 1.1,
+                    }}
+                    href={appLink}
+                    target="_blank"
+                    className="font-bold cursor-pointer text-center text-text text-base rounded-2xl bg-primary px-4 py-2"
+                  >
                     Download today on IOS
                   </motion.a>
-                  <motion.a whileTap={{
-                    scale: 0.9
-                  }} whileHover={{
-                    scale: 1.1
-                  }} href="https://web.market-quad.com" target="_blank" className="font-bold cursor-pointer  text-center text-text text-base  rounded-2xl bg-background px-4 py-2">
+                  <motion.a
+                    whileTap={{
+                      scale: 0.9,
+                    }}
+                    whileHover={{
+                      scale: 1.1,
+                    }}
+                    href="https://web.market-quad.com"
+                    target="_blank"
+                    className="font-bold cursor-pointer  text-center text-text text-base  rounded-2xl bg-background px-4 py-2"
+                  >
                     Use the Web App
                   </motion.a>
                 </div>
+                  <p className="text-[12px] text-[#6b9e8a] mt-4">
+                    🎁 We are giving away{" "}
+                    <span className="text-primary font-bold">$10 One Card</span>{" "}
+                    to the first 3 students who list and sell.{" "}
+                    <a
+                      href="/giveaway"
+                      className="text-primary underline underline-offset-2 font-semibold hover:opacity-80 transition-opacity"
+                    >
+                      See the rules
+                    </a>
+                  </p>
               </AnimatePresence>
             </motion.div>
           </div>
